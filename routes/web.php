@@ -35,6 +35,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('profile', 'ProfileController@index'); 
+Route::get('profile/{id}/details', 'ProfileController@details'); 
 Route::get('profile/{id}/edit', 'ProfileController@edit'); 
 Route::post('profile/update', 'ProfileController@update'); 
-Route::get('profile/{id}/delete', 'ProfileController@destroy'); 
+Route::get('profile/{id}/delete', 'ProfileController@destroy');
+

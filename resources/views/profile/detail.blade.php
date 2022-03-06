@@ -5,7 +5,7 @@
 @section('content')
 
 <?php //Hiển thị thông báo thành công?>
-<div class="page-header"><h4>User-profile List</h4></div>
+<div class="page-header"><h4>User-profile</h4></div>
 
 @if ( Session::has('success') )
 	<div class="alert alert-success alert-dismissible" role="alert">
@@ -27,44 +27,62 @@
 		</button>
 	</div>
 @endif
+<p><a class="btn btn-primary" href="/profile">Back</a></p>
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12">
 		<div class="table-responsive">
 			{{-- <p><a class="btn btn-primary" href="/{{ url('/profile/create') }}">Thêm mới</a></p> --}}
+			@foreach($profile as $profile)
+			<form action="/profile/{{ $profile->id }}/edit" >
 			<table id="DataList" class="table table-bordered table-hover">
-				<thead>
-					<tr>
-                        <th>No.</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Avatar</th>
-                        <th>Phone_number</th>
-                        <th colspan="3">Action</th>
-                      </tr>
-				</thead>
 				<tbody>
-				<?php $page= $listprofile_pagination->currentPage() ;
-					  $index=($page-1)*5+1; ?>
-				@foreach($listprofile_pagination as $profile)
 					<tr>
-				      <td><?php echo $index ?></td>
+					  <td> Name</td>
                       <td>{{ $profile->name }}</td>
-                      <td>{{ $profile->email }}</td>
-                      <td>{{ $profile->avatar }}</td>
-                      <td>{{ $profile->phone_number}}</td>
-					  <td><a class="btn btn-info" href="/profile/{{ $profile->id }}/details">Details</a></td>
-						<td><a class="btn btn-primary" href="/profile/{{ $profile->id }}/edit">Edit</a></td>
-						<td><a class="btn btn-danger" href="/profile/{{ $profile->id }}/delete">Delete</a></td>
 					</tr>
-					<?php $index++ ?>
-				@endforeach
+					<tr>
+						<td> Birthday</td>
+						<td>{{ $profile->date_of_birth }}</td>
+					  </tr>
+					  <tr>
+						<td> Nickname</td>
+						<td>{{ $profile->nickname }}</td>
+					  </tr>
+					  <tr>
+						<td> Username</td>
+						<td>{{ $profile->username }}</td>
+					  </tr>
+					  <tr>
+						<td> Email</td>
+						<td>{{ $profile->email }}</td>
+					  </tr>
+					  <tr>
+						<td> Description</td>
+						<td>{{ $profile->description }}</td>
+					  </tr>
+					  <tr>
+						<td> Avatar</td>
+						<td>{{ $profile->avatar }}</td>
+					  </tr>
+					  <tr>
+						<td> Address</td>
+						<td>{{ $profile->address }}</td>
+					  </tr>
+					  <tr>
+						<td> Phone</td>
+						<td>{{ $profile->phone_number }}</td>
+					  </tr>
+					  <tr>
+						<td> Created_at</td>
+						<td>{{ $profile->created_at }}</td>
+					  </tr>
 				</tbody>
 			</table>
+			<center><button type="submit" class="btn btn-primary">Edit</button></center>
+			</form>
+			@endforeach
 		</div>
-		<h2> Total: <?php echo count($listprofile); ?> records. </h2>
-		<div style="margin: auto ;width: 40%;padding: 10px;">
-			{{$listprofile_pagination->links("pagination::bootstrap-4")}}
-			</div>
+
 	</div>
 </div>
 

@@ -29,7 +29,7 @@
 @endif
 
 <?php //Hiển thị form sửa?>
-<p><a class="btn btn-primary" href="/{{ url('/profile') }}">Back</a></p>
+<p><a class="btn btn-primary" href="/profile">Back</a></p>
 <div class="col-xs-4 col-xs-offset-4">
 	<center><h4>Edit User-profile</h4></center>
 	<form action="{{ url('/profile/update') }}" method="post">

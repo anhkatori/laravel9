@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++){
         $this->call([
-            ProfilesSeeder::class   //gọi đến profile seeed
+            ProfilesSeeder::class
         ]); }
+        $this->call([
+            RolesSeeder::class
+        ]);
+        $this->call([
+            PermissionsSeeder::class        ]);
+        $this->call([
+            UsersSeeder::class        ]);
+        $this->call([
+            RolePermissionSeeder::class        ]);
+
      }
 }
